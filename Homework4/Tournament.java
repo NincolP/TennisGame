@@ -35,12 +35,10 @@ public class Tournament {
            game.setTwo(selectTwoRandom());
            matches.add(game);
        }
-
        //RESET SCORES AND POINTS FOR NEW ROUND
        for (Player player : players) {
            player.resetScore();
        }
-
    }
    //------------------------------------------
 
@@ -56,7 +54,6 @@ public class Tournament {
                 System.out.println();
                 //Add winner player to finalist of the round
                 players.add(matches.get(i).getOne());
-                matches.get(i).setGameCompletedFlag();
                 matches.remove(i);
                 break;
             }
@@ -67,20 +64,15 @@ public class Tournament {
                 System.out.println();
                 //Add winner player to finalist of the round
                 players.add(matches.get(i).getTwo());
-                matches.get(i).setGameCompletedFlag();
                 matches.remove(i);
                 break;
             }
-
-
         }
-
     }
 
     public int getMatchesNumber() {
         return matches.size();
     }
-
 
     public Player selectTwoRandom() {
 

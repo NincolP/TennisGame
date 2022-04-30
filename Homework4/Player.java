@@ -28,7 +28,6 @@ public class Player {
         points = 0;
     }
 
-
     public void setPointsAndScore() {
         points++;
         if (points == 1)
@@ -38,7 +37,6 @@ public class Player {
         else if (points == 3)
             score = 40;
     }
-
 
     public int getPoints () {
        return points;

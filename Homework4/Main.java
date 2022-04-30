@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    static char keepGoing;
     public static void main(String[] args) {
         ArrayList<Player> players = new ArrayList<>();
         int numberOfPlayers = 8;
@@ -24,9 +23,7 @@ public class Main {
 
         Tournament tournament = new Tournament(players);
         tournament.displayPlayers();
-
         tournament.setNumOfGames();
-
         tournament.setUpMatches();
 
 
@@ -34,10 +31,8 @@ public class Main {
             while (tournament.getMatchesNumber() > 0) {
                 tournament.round();
                 System.out.print("Press enter to continue play");
-                //keepGoing = input.next().charAt(0);
                 input.nextLine();
                 System.out.println("----------------------------------------------------------------------------");
-                //if(tournament.getMatchesNumber() == 0) break;
             }
             //SETTING UP NEW ROUND----------------
             tournament.displayRemainingPlayers();
@@ -50,6 +45,5 @@ public class Main {
         //END OF DO- WHILE LOOP
 
     }//END OF MAIN METHOD
-
 
 }//END OF MAIN CLASS

@@ -1,23 +1,13 @@
 package Homework4;
-
-import java.sql.SQLOutput;
-
 public class Game {
-
     private Player playerOne = new Player();
     private Player playerTwo = new Player();
-
     boolean playerOneLeadsByTwo = false;
     boolean playerTwoLeadsByTwo = false;
-
     boolean advantagePone = false;
     boolean advantagePTwo = false;
-
-    boolean gameCompletedFlag;
-
     public Game () {
    }
-
     public void displayScore() {
 
        //PLAYERS ARE TIED WHEN SCORE IS 40 OR MORE-------------------------------------------------------------------
@@ -92,13 +82,11 @@ public class Game {
            advantagePTwo = true;
        }
         //-----------------------------------------------------------------------------------------------------------
-
     }
 
     public Player getOne() {
         return playerOne;
     }
-
     public void setOne(Player one) {
         this.playerOne = one;
     }
@@ -111,7 +99,6 @@ public class Game {
         this.playerTwo = two;
     }
 
-
     public void pointWinner(int num) {
         if(num % 2 == 0) {
             playerOne.setPointsAndScore();
@@ -123,16 +110,9 @@ public class Game {
 
     public void displayGamePlayers(){
         System.out.println("Game Players");
-        System.out.print(playerOne.getName() + " VS " + playerTwo.getName());
-        System.out.println();
-    }
-
-    public void setGameCompletedFlag() {
-            gameCompletedFlag = true;
-    }
-
-    public boolean getGameCompletedFlag() {
-       return gameCompletedFlag;
+        System.out.println(playerOne.getName() + " VS " + playerTwo.getName());
+        System.out.println(playerOne.getName() + " Serving");
+        //System.out.println();
     }
 
     public void roundGamePlay ( ) {
@@ -140,17 +120,9 @@ public class Game {
        System.out.print("Previous Score: ");
        displayScore();
        int random = (int)(Math.random() * 50 + 1);
-
-        //System.out.println(playerOne.getPoints());
-        //System.out.println(playerTwo.getPoints());
-
        pointWinner(random);
        System.out.print("New Score: ");
        displayScore();
-
-        //System.out.println(playerOne.getPoints());
-        //System.out.println(playerTwo.getPoints());
-
        System.out.println();
     }//END OF ROUND GAME PLAY METHOD
 
