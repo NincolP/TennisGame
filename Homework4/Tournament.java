@@ -16,7 +16,7 @@ public class Tournament {
     }
     public void displayPlayers() {
         for (Player player : players) {
-            System.out.println(player.getName());
+            System.out.print(player.getName() + " ");
         }
     }
     //SELECT TWO PLAYERS PER MATCH RANDOMLY

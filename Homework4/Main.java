@@ -13,6 +13,7 @@ public class Main {
 
         System.out.println("Enter 8 player names: ");
 
+
         for(int i = 0; i < numberOfPlayers; i++) {
             Player player = new Player();
             player.setName(input.next());
@@ -20,6 +21,8 @@ public class Main {
         }
 
         input.nextLine();
+
+        System.out.println("The Players are: ");
 
         Tournament tournament = new Tournament(players);
         tournament.displayPlayers();
