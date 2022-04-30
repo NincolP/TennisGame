@@ -7,57 +7,92 @@ public class Game {
     private Player playerOne = new Player();
     private Player playerTwo = new Player();
 
-    boolean playerOneLeadsByTwo;
-    boolean playerTwoLeadsByTwo;
+    boolean playerOneLeadsByTwo = false;
+    boolean playerTwoLeadsByTwo = false;
 
-    boolean advantagePone;
-    boolean advantagePTwo;
+    boolean advantagePone = false;
+    boolean advantagePTwo = false;
 
     boolean gameCompletedFlag;
 
-   public Game () {
-
+    public Game () {
    }
-
-    public boolean clearLead () {
-       if(playerOneLeadsByTwo || playerTwoLeadsByTwo)
-           return true;
-       else
-           return false;
-    }
 
     public void displayScore() {
 
-       if(playerOne.getPoints() >= 3 && playerTwo.getPoints() >= 3 && (playerOne.getPoints() == playerTwo.getPoints())) {
-            System.out.println("Deuce");
+       //PLAYERS ARE TIED WHEN SCORE IS 40 OR MORE-------------------------------------------------------------------
+       if( (playerOne.getPoints() == playerTwo.getPoints()) && (playerOne.getPoints() >= 3)
+               && (playerTwo.getPoints() >= 3)  ){
+           System.out.println("---Deuce---");
+            //System.out.println("Deuce");
+            advantagePone = false;
+            advantagePTwo = false;
         }
+       //------------------------------------------------------------------------------------------------------------
 
-       else if(playerOne.getPoints() > 3 && playerOneLeadsByTwo) {
-           System.out.println("Game goes to player 1");
-       }
-
-       else if(playerTwo.getPoints() > 3 && playerTwoLeadsByTwo) {
-           System.out.println("Game goes to player 2");
-       }
-
-       else if( playerOne.getPoints() <= 3 && playerTwo.getPoints() <= 3 ) {
+       //ONE OF THE PLAYERS IS 40 AND LEADS BY TWO. DISPLAY SCORE AND SET LEAD BY TWO FLAG---------------------------
+       else if (playerOne.getPoints() == 3 && (playerOne.getPoints() - playerTwo.getPoints() >= 2)) {
            System.out.print(playerOne.getScore() + "/");
            System.out.println(playerTwo.getScore());
-           if(playerOne.getPoints() == 3 && playerTwo.getPoints() == 2) {
-               System.out.println("Player One Advantage");
-           }
-           else if(playerTwo.getPoints() == 3 && playerOne.getPoints() == 2) {
-               System.out.println("Player Two Advantage");
-           }
+           playerOneLeadsByTwo = true;
        }
 
-        else if (playerOne.getPoints() > 3 && advantagePone) {
+       else if(playerTwo.getPoints() == 3 && (playerTwo.getPoints() - playerOne.getPoints() >= 2) ){
+            System.out.print(playerOne.getScore() + "/");
+            System.out.println(playerTwo.getScore());
+            playerTwoLeadsByTwo = true;
+        }
+       //------------------------------------------------------------------------------------------------------------
+
+       //ONE PLAYER IS 40 AND HAS ONE POINT ADVANTAGE----------------------------------------------------------------
+       else if (playerOne.getPoints() == 3 && (playerOne.getPoints() - playerTwo.getPoints() == 1)) {
+           System.out.print(playerOne.getScore() + "/");
+           System.out.println(playerTwo.getScore());
            System.out.println("Player One Advantage");
+           advantagePone = true;
        }
-        else if (playerTwo.getPoints() > 3 && advantagePTwo) {
+
+       else if(playerTwo.getPoints() == 3 && (playerTwo.getPoints() - playerOne.getPoints() == 1) ){
+           System.out.print(playerOne.getScore() + "/");
+           System.out.println(playerTwo.getScore());
            System.out.println("Player two advantage");
+           advantagePTwo = true;
        }
-        
+       //------------------------------------------------------------------------------------------------------------
+       //WINNING BY TWO POINTS WHEN PLAYER SCORE IS MORE THAN 40 POINTS
+       else if( (playerOne.getPoints() > 3) && (playerOne.getPoints() - playerTwo.getPoints() == 2)) {
+           System.out.println("Game goes to player 1.");
+           advantagePone = false;
+           advantagePTwo = false;
+           playerOneLeadsByTwo = true;
+       }
+
+       else if( (playerTwo.getPoints() > 3) && (playerTwo.getPoints() - playerOne.getPoints() == 2) ){
+           System.out.println("Game goes to player 2.");
+           advantagePone = false;
+           advantagePTwo = false;
+           playerTwoLeadsByTwo = true;
+       }
+       //------------------------------------------------------------------------------------------------------------
+
+       //UNDER 40 POINTS SCORING-------------------------------------------------------------------------------------
+       else if( playerOne.getPoints() < 3 && playerTwo.getPoints() < 3) {
+           System.out.print(playerOne.getScore() + "/");
+           System.out.println(playerTwo.getScore());
+       }
+       //----------------------------------------------------------------------------------------------------------------
+
+       //MORE THAN 40 POINTS AND ONE POINT ADVANTAGE---------------------------------------------------------------------
+        else if (playerOne.getPoints() > 3 && (playerOne.getPoints() - playerTwo.getPoints() == 1)) {
+           System.out.println("Player One Advantage");
+           advantagePone = true;
+       }
+        else if (playerTwo.getPoints() > 3 && (playerTwo.getPoints() - playerOne.getPoints() == 1)) {
+           System.out.println("Player two advantage");
+           advantagePTwo = true;
+       }
+        //-----------------------------------------------------------------------------------------------------------
+
     }
 
     public Player getOne() {
@@ -90,7 +125,6 @@ public class Game {
         System.out.println("Game Players");
         System.out.print(playerOne.getName() + " VS " + playerTwo.getName());
         System.out.println();
-
     }
 
     public void setGameCompletedFlag() {
@@ -105,30 +139,19 @@ public class Game {
        displayGamePlayers();
        System.out.print("Previous Score: ");
        displayScore();
-       int random = (int )(Math.random() * 50 + 1);
+       int random = (int)(Math.random() * 50 + 1);
+
+        //System.out.println(playerOne.getPoints());
+        //System.out.println(playerTwo.getPoints());
+
        pointWinner(random);
-
-        if(playerOne.getPoints() - playerTwo.getPoints() == 2)
-            playerOneLeadsByTwo = true;
-        else if (playerTwo.getPoints() - playerOne.getPoints() == 2)
-            playerTwoLeadsByTwo = true;
-        else if(playerOne.getPoints() - playerTwo.getPoints() == 1)
-            advantagePone = true;
-        else if(playerTwo.getPoints() - playerOne.getPoints() ==1)
-            advantagePTwo = true;
-
-
        System.out.print("New Score: ");
        displayScore();
+
+        //System.out.println(playerOne.getPoints());
+        //System.out.println(playerTwo.getPoints());
+
        System.out.println();
+    }//END OF ROUND GAME PLAY METHOD
 
-
-
-
-    }
-
-
-
-
-
-}
+}//END OF GAME CLASS

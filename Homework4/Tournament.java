@@ -1,6 +1,5 @@
 package Homework4;
 
-
 import java.util.ArrayList;
 
 public class Tournament {
@@ -9,12 +8,12 @@ public class Tournament {
 
     private ArrayList<Game> matches = new ArrayList<>();
 
-    private Game game;
+
+
+    //private Game game;
     private int round = 1;
+    private int numOfGames;
 
-    private int numOfGames = 4;
-
-    boolean endOfGame;
 
 
     public Tournament(ArrayList<Player> players) {
@@ -37,62 +36,49 @@ public class Tournament {
            matches.add(game);
        }
 
+       //RESET SCORES AND POINTS FOR NEW ROUND
+       for (Player player : players) {
+           player.resetScore();
+       }
+
    }
    //------------------------------------------
 
     public void round () {
-        //boolean thereIsAWinner = false;
-        //System.out.println();
         System.out.println("Round " + round);
-
         for(int i = 0; i < matches.size(); i++) {
-
-
 
             matches.get(i).roundGamePlay();
 
-
-            if(matches.get(i).getOne().getPoints() >= 3 && matches.get(i).playerOneLeadsByTwo) {
-                //thereIsAWinner = true;
+            if(matches.get(i).playerOneLeadsByTwo ) {
                 String winner = matches.get(i).getOne().getName();
-
                 System.out.println("P1 " + winner + " wins");
                 System.out.println();
-
                 //Add winner player to finalist of the round
                 players.add(matches.get(i).getOne());
                 matches.get(i).setGameCompletedFlag();
-
-
+                matches.remove(i);
+                break;
             }
 
-            else if (matches.get(i).getTwo().getPoints() >= 3 && matches.get(i).playerTwoLeadsByTwo){
-                //thereIsAWinner = true;
+            else if (matches.get(i).playerTwoLeadsByTwo ){
                 String winner = matches.get(i).getTwo().getName();
-
                 System.out.println("P2 " + winner + " wins");
                 System.out.println();
-
+                //Add winner player to finalist of the round
                 players.add(matches.get(i).getTwo());
                 matches.get(i).setGameCompletedFlag();
-
-            }
-
-
-            if(matches.get(i).getGameCompletedFlag()) {
                 matches.remove(i);
+                break;
             }
 
 
         }
 
-
-
     }
 
     public int getMatchesNumber() {
         return matches.size();
-
     }
 
 
@@ -115,13 +101,28 @@ public class Tournament {
     }
 
     public void displayRemainingPlayers () {
-        for(int i = 0; i < players.size(); i++) {
-            System.out.println(players.get(i).getName());
+        if(players.size() == 1) {
+            System.out.println("***** " +players.get(0).getName() + " has won the tournament *****");
+        }
+
+        else {
+            System.out.println("Players moving to next round: ");
+            for (Player player : players) {
+                System.out.println(player.getName());
+            }
         }
     }
 
     public int getNumberofGames () {
         return numOfGames;
+    }
+
+    public void setNumOfGames () {
+        numOfGames = players.size() / 2;
+    }
+
+    public void increaseRoundNumber (){
+        round++;
     }
 
 }

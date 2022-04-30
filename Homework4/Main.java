@@ -25,19 +25,31 @@ public class Main {
         Tournament tournament = new Tournament(players);
         tournament.displayPlayers();
 
+        tournament.setNumOfGames();
+
         tournament.setUpMatches();
 
-        while(tournament.getMatchesNumber() > 0 ) {
-            tournament.round();
-            System.out.println("Press enter to continue play");
-            //keepGoing = input.next().charAt(0);
-            input.nextLine();
-            System.out.println("----------------------------------------------------------------------------");
-        }
-        System.out.println("Players moving to next round: ");
-        tournament.displayRemainingPlayers();
 
-    }
+        do {
+            while (tournament.getMatchesNumber() > 0) {
+                tournament.round();
+                System.out.print("Press enter to continue play");
+                //keepGoing = input.next().charAt(0);
+                input.nextLine();
+                System.out.println("----------------------------------------------------------------------------");
+                //if(tournament.getMatchesNumber() == 0) break;
+            }
+            //SETTING UP NEW ROUND----------------
+            tournament.displayRemainingPlayers();
+            tournament.increaseRoundNumber();
+            tournament.setNumOfGames();
+            tournament.setUpMatches();
+            //------------------------------------
+
+        }while(tournament.getNumberofGames() > 0);
+        //END OF DO- WHILE LOOP
+
+    }//END OF MAIN METHOD
 
 
-}
+}//END OF MAIN CLASS

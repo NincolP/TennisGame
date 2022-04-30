@@ -3,9 +3,7 @@ package Homework4;
 public class Player {
 
     private String name;
-    private int score = 0;
-
-
+    private int score;
 
     private int points;
 
@@ -25,11 +23,11 @@ public class Player {
         return score;
     }
 
+    public void resetScore() {
+        score = 0;
+        points = 0;
+    }
 
-
-   /* public void setScore(int s) {
-        score += s;
-    }*/
 
     public void setPointsAndScore() {
         points++;
@@ -45,12 +43,5 @@ public class Player {
     public int getPoints () {
        return points;
     }
-
-
-
-
-
-
-
 
 }
