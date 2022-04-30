@@ -26,7 +26,6 @@ public class Main {
         tournament.setNumOfGames();
         tournament.setUpMatches();
 
-
         do {
             while (tournament.getMatchesNumber() > 0) {
                 tournament.round();

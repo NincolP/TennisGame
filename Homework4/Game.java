@@ -9,7 +9,6 @@ public class Game {
     public Game () {
    }
     public void displayScore() {
-
        //PLAYERS ARE TIED WHEN SCORE IS 40 OR MORE-------------------------------------------------------------------
        if( (playerOne.getPoints() == playerTwo.getPoints()) && (playerOne.getPoints() >= 3)
                && (playerTwo.getPoints() >= 3)  ){
@@ -83,22 +82,18 @@ public class Game {
        }
         //-----------------------------------------------------------------------------------------------------------
     }
-
     public Player getOne() {
         return playerOne;
     }
     public void setOne(Player one) {
         this.playerOne = one;
     }
-
     public Player getTwo() {
         return playerTwo;
     }
-
     public void setTwo(Player two) {
         this.playerTwo = two;
     }
-
     public void pointWinner(int num) {
         if(num % 2 == 0) {
             playerOne.setPointsAndScore();
@@ -107,14 +102,12 @@ public class Game {
             playerTwo.setPointsAndScore();
         }
     }
-
     public void displayGamePlayers(){
         System.out.println("Game Players");
         System.out.println(playerOne.getName() + " VS " + playerTwo.getName());
         System.out.println(playerOne.getName() + " Serving");
         //System.out.println();
     }
-
     public void roundGamePlay ( ) {
        displayGamePlayers();
        System.out.print("Previous Score: ");
@@ -125,5 +118,4 @@ public class Game {
        displayScore();
        System.out.println();
     }//END OF ROUND GAME PLAY METHOD
-
 }//END OF GAME CLASS

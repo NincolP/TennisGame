@@ -3,29 +3,18 @@ package Homework4;
 import java.util.ArrayList;
 
 public class Tournament {
-
     private ArrayList<Player> players = new ArrayList<>();
-
     private ArrayList<Game> matches = new ArrayList<>();
-
-
-
-    //private Game game;
     private int round = 1;
     private int numOfGames;
-
-
-
     public Tournament(ArrayList<Player> players) {
         this.players.addAll(players);
     }
-
     public void displayPlayers() {
         for (Player player : players) {
             System.out.println(player.getName());
         }
     }
-
     //SELECT TWO PLAYERS PER MATCH RANDOMLY
    public void setUpMatches() {
        for(int i = 0; i < numOfGames; i ++) {
@@ -41,35 +30,34 @@ public class Tournament {
        }
    }
    //------------------------------------------
-
     public void round () {
         System.out.println("Round " + round);
         for(int i = 0; i < matches.size(); i++) {
-
             matches.get(i).roundGamePlay();
 
-            if(matches.get(i).playerOneLeadsByTwo ) {
+            if(matches.get(i).playerOneLeadsByTwo) {
                 String winner = matches.get(i).getOne().getName();
                 System.out.println("P1 " + winner + " wins");
                 System.out.println();
                 //Add winner player to finalist of the round
                 players.add(matches.get(i).getOne());
+                //Remove match from current active matches
                 matches.remove(i);
                 break;
             }
 
-            else if (matches.get(i).playerTwoLeadsByTwo ){
+            else if (matches.get(i).playerTwoLeadsByTwo){
                 String winner = matches.get(i).getTwo().getName();
                 System.out.println("P2 " + winner + " wins");
                 System.out.println();
                 //Add winner player to finalist of the round
                 players.add(matches.get(i).getTwo());
+                //Remove match from current active matches
                 matches.remove(i);
                 break;
             }
         }
     }
-
     public int getMatchesNumber() {
         return matches.size();
     }
@@ -89,9 +77,7 @@ public class Tournament {
             players.remove(random);
             return player;
         }
-
     }
-
     public void displayRemainingPlayers () {
         if(players.size() == 1) {
             System.out.println("***** " +players.get(0).getName() + " has won the tournament *****");
@@ -104,17 +90,13 @@ public class Tournament {
             }
         }
     }
-
     public int getNumberofGames () {
         return numOfGames;
     }
-
     public void setNumOfGames () {
         numOfGames = players.size() / 2;
     }
-
     public void increaseRoundNumber (){
         round++;
     }
-
 }
