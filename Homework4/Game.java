@@ -6,8 +6,6 @@ public class Game {
     boolean playerTwoLeadsByTwo = false;
     boolean advantagePone = false;
     boolean advantagePTwo = false;
-
-    int servCounter;
     public Game () {
    }
     public void displayScore() {
@@ -110,7 +108,6 @@ public class Game {
     }
     public void displayGamePlayers(){
 
-
         System.out.println("Game Players");
         System.out.println(playerOne.getName() + " VS " + playerTwo.getName());
 
@@ -120,8 +117,7 @@ public class Game {
         else {
             System.out.println(playerTwo.getName() + " serving");
         }
-        //System.out.println();
-        servCounter++;
+
     }
     public void roundGamePlay ( ) {
        displayGamePlayers();
