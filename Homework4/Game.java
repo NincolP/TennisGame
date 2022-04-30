@@ -6,6 +6,8 @@ public class Game {
     boolean playerTwoLeadsByTwo = false;
     boolean advantagePone = false;
     boolean advantagePTwo = false;
+
+    int servCounter;
     public Game () {
    }
     public void displayScore() {
@@ -97,16 +99,29 @@ public class Game {
     public void pointWinner(int num) {
         if(num % 2 == 0) {
             playerOne.setPointsAndScore();
+            playerOne.setServing(true);
+            playerTwo.setServing(false);
         }
         else {
             playerTwo.setPointsAndScore();
+            playerTwo.setServing(true);
+            playerOne.setServing(false);
         }
     }
     public void displayGamePlayers(){
+
+
         System.out.println("Game Players");
         System.out.println(playerOne.getName() + " VS " + playerTwo.getName());
-        System.out.println(playerOne.getName() + " Serving");
+
+        if(playerOne.getServing()) {
+            System.out.println(playerOne.getName() + " serving");
+        }
+        else {
+            System.out.println(playerTwo.getName() + " serving");
+        }
         //System.out.println();
+        servCounter++;
     }
     public void roundGamePlay ( ) {
        displayGamePlayers();

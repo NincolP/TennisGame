@@ -4,6 +4,8 @@ public class Player {
     private String name;
     private int score;
     private int points;
+
+    private boolean serving = false;
     public Player() {
 
     }
@@ -31,5 +33,13 @@ public class Player {
     }
     public int getPoints () {
        return points;
+    }
+
+    public void  setServing(Boolean value) {
+        serving = value;
+    }
+
+    public boolean getServing() {
+        return serving;
     }
 }

@@ -7,6 +7,10 @@ public class Tournament {
     private ArrayList<Game> matches = new ArrayList<>();
     private int round = 1;
     private int numOfGames;
+
+
+
+    private String secondPlace;
     public Tournament(ArrayList<Player> players) {
         this.players.addAll(players);
     }
@@ -22,6 +26,7 @@ public class Tournament {
            Game game = new Game();
            game.setOne(selectTwoRandom());
            game.setTwo(selectTwoRandom());
+           game.getOne().setServing(true);
            matches.add(game);
        }
        //RESET SCORES AND POINTS FOR NEW ROUND
@@ -37,6 +42,7 @@ public class Tournament {
 
             if(matches.get(i).playerOneLeadsByTwo) {
                 String winner = matches.get(i).getOne().getName();
+                secondPlace = matches.get(i).getTwo().getName();
                 System.out.println("P1 " + winner + " wins");
                 System.out.println();
                 //Add winner player to finalist of the round
@@ -48,6 +54,7 @@ public class Tournament {
 
             else if (matches.get(i).playerTwoLeadsByTwo){
                 String winner = matches.get(i).getTwo().getName();
+                secondPlace = matches.get(i).getOne().getName();
                 System.out.println("P2 " + winner + " wins");
                 System.out.println();
                 //Add winner player to finalist of the round
@@ -81,6 +88,7 @@ public class Tournament {
     public void displayRemainingPlayers () {
         if(players.size() == 1) {
             System.out.println("***** " +players.get(0).getName() + " has won the tournament *****");
+            System.out.println("-----Second place finisher: " + secondPlace + "-----");
         }
 
         else {
